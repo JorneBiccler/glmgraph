@@ -2,7 +2,7 @@
 
 glmgraph <- function(X, Y, L, family=c("gaussian","binomial"), penalty=c("MCP","lasso") ,mcpapproach=c("mmcd","adaptive","original"),
 gamma=8, lambda1,nlambda1=100, lambda2=c(0,1e-2 * 2^(0:7)),
-eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),standardize=TRUE,warn=FALSE,...)
+eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),standardize=TRUE,warn=FALSE, lambda1.min.ratio = NULL, ...)
 {
 
 	family <- match.arg(family)
@@ -38,7 +38,7 @@ eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),stan
   	  	
   	n <- length(Y)
   	p <- ncol(XX)
-	if(!exists("lambda1.min.ratio")){
+	if(is.null("lambda1.min.ratio")){
   		lambda1.min.ratio=ifelse(n>p,1e-6,1e-2)
 	}
   	if (missing(lambda1)) {
