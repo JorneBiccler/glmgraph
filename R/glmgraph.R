@@ -38,7 +38,7 @@ eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),stan
   	  	
   	n <- length(Y)
   	p <- ncol(XX)
-	if(is.null("lambda1.min.ratio")){
+	if(is.null(lambda1.min.ratio)){
   		lambda1.min.ratio=ifelse(n>p,1e-6,1e-2)
 	}
   	if (missing(lambda1)) {
