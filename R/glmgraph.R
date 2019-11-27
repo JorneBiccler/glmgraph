@@ -35,12 +35,12 @@ eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),stan
   	  	
   	YY <- Y <- as.numeric(Y)  
   		  	
-  	if(family=="gaussian")  YY <- scale(Y)
   	  	
   	n <- length(Y)
   	p <- ncol(XX)
-  	lambda1.min.ratio=ifelse(n>p,1e-4,1e-2)
-
+	if(!exists("lambda1.min.ratio")){
+  		lambda1.min.ratio=ifelse(n>p,1e-6,1e-2)
+	}
   	if (missing(lambda1)) {
     	lambda1 <- setupLambda(XX, YY, family,lambda1.min.ratio, nlambda1, penalty.factor[nz])
     	lambda1 <- as.numeric(formatC(lambda1,digits=6, format="f"))
