@@ -26,7 +26,7 @@ eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),stan
   		X.scale <- apply(X,2,sd)
   	}
   	
-  	nz <- which(X.scale > 1e-6)  	
+  	nz <- which(X.scale > 1e-10)  	
   	
   	if (length(nz)==0)  stop("please specify penalty.cols again")
   	if (length(nz) != ncol(XX) ){
@@ -43,7 +43,7 @@ eps=1e-3,max.iter=2000,dfmax=round(ncol(X)/2),penalty.factor=rep(1,ncol(X)),stan
 	}
   	if (missing(lambda1)) {
     	lambda1 <- setupLambda(XX, YY, family,lambda1.min.ratio, nlambda1, penalty.factor[nz])
-    	lambda1 <- as.numeric(formatC(lambda1,digits=6, format="f"))
+    	lambda1 <- as.numeric(formatC(lambda1,digits=10, format="f"))
   	}
   	
     nlambda1 <- length(lambda1)
